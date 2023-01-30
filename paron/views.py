@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from paron.decorators import unauthenticated_user, allowed_user
-from paron.models import Balance
+from paron.models import Balance, Product
 from paron.forms import DeliveryForm
 
 
@@ -51,7 +51,7 @@ def staff_view(request):
     delivery_form = DeliveryForm()
     # retrieve form values through http post request
     if request.method == 'POST':
-        delivery_form_form = DeliveryForm(request.POST)
+        delivery_form = DeliveryForm(request.POST)
         if delivery_form.is_valid():  # check if it's valid
             # save user using form values and lower case the username string
             delivery = delivery_form.save(commit=False)
